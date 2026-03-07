@@ -1,0 +1,59 @@
+---
+const badges = [
+  { moduleId: 1, emoji: '🌟', name: "Fool's Gold", description: "Completed the Introduction & Foundations" },
+  { moduleId: 2, emoji: '🎭', name: "Archetype Master", description: "Mastered the 22 Major Arcana" },
+  { moduleId: 3, emoji: '🔥', name: "Suit Scholar", description: "Studied all four sacred suits" },
+  { moduleId: 4, emoji: '👑', name: "Court Commander", description: "Conquered the Royal Court cards" },
+  { moduleId: 5, emoji: '🔮', name: "Spread Weaver", description: "Learned the art of tarot spreads" },
+  { moduleId: 6, emoji: '⚡', name: "Fearless Reader", description: "Achieved intuitive reading mastery" },
+  { moduleId: 7, emoji: '💫', name: "Tarot Guide", description: "Ready to read for others with wisdom" },
+];
+---
+<div class="badge-grid">
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" id="badgeContainer">
+    {badges.map((badge) => (
+      <div
+        class="badge-item badge-locked flex flex-col items-center gap-2 p-4 rounded-2xl border border-charcoal/60 bg-charcoal/10 text-center cursor-default transition-all duration-500"
+        data-module-id={badge.moduleId}
+      >
+        <div class="text-5xl badge-emoji">{badge.emoji}</div>
+        <div>
+          <p class="font-accent text-sm text-silver">{badge.name}</p>
+          <p class="text-silver/50 text-xs mt-1 leading-tight">{badge.description}</p>
+        </div>
+        <span class="badge-status font-accent text-xs px-2 py-0.5 rounded-full border border-charcoal/60 text-silver/30">
+          Locked
+        </span>
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  function updateBadges() {
+    const items = document.querySelectorAll<HTMLElement>('.badge-item');
+
+    items.forEach((item) => {
+      const moduleId = item.dataset.moduleId;
+      if (!moduleId) return;
+
+      const isComplete = localStorage.getItem(`module_complete_${moduleId}`) === 'true';
+      const statusEl = item.querySelector('.badge-status');
+
+      if (isComplete) {
+        item.classList.remove('badge-locked');
+        item.classList.add('badge-unlocked');
+        item.classList.add('border-hotpink/40', 'bg-hotpink/5');
+        item.classList.remove('border-charcoal/60', 'bg-charcoal/10');
+        if (statusEl) {
+          statusEl.textContent = '✓ Earned!';
+          statusEl.classList.remove('border-charcoal/60', 'text-silver/30');
+          statusEl.classList.add('border-hotpink/60', 'text-hotpink', 'bg-hotpink/10');
+        }
+      }
+    });
+  }
+
+  updateBadges();
+  window.addEventListener('storage', updateBadges);
+</script>

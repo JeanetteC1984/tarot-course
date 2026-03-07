@@ -1,0 +1,163 @@
+[
+  {
+    "id": 1,
+    "title": "The Fool's Leap",
+    "subtitle": "Introduction & Foundations",
+    "slug": "1-fools-leap",
+    "description": "Begin your tarot journey with an open heart and curious mind. Learn the basics of the tarot deck, card anatomy, and how to establish your personal practice.",
+    "objectives": [
+      "Understand the structure of a tarot deck",
+      "Learn card anatomy and symbolism",
+      "Establish your personal tarot practice",
+      "Complete your first intuitive card pull"
+    ],
+    "worksheets": ["My Tarot Origin Story"],
+    "activities": ["Card Anatomy Breakdown", "Fearless First Pull"],
+    "discussion": [
+      "What drew you to tarot? What do you hope to learn?",
+      "How do you feel about intuition as a tool for insight?",
+      "What is your relationship with symbolism and imagery?"
+    ],
+    "badge": "🌟",
+    "badgeName": "Fool's Gold",
+    "color": "violet"
+  },
+  {
+    "id": 2,
+    "title": "Archetypes of the Soul",
+    "subtitle": "The Major Arcana",
+    "slug": "2-major-arcana",
+    "description": "Journey through the 22 Major Arcana cards and discover the universal archetypes that mirror the stages of our lives. From the innocent Fool to the triumphant World, learn to read the grand narrative of your soul's journey.",
+    "objectives": [
+      "Learn all 22 Major Arcana cards and their meanings",
+      "Understand the Fool's Journey as a life narrative",
+      "Connect archetypes to personal life experiences",
+      "Practice reading Major Arcana in context"
+    ],
+    "worksheets": ["My Fool's Journey Map", "Archetype Mirror"],
+    "activities": ["Major Arcana Story Timeline", "Personal Archetype Pull"],
+    "discussion": [
+      "Which Major Arcana card resonates most with your current life chapter?",
+      "How do you see the Fool's Journey reflected in your own life?",
+      "Which archetype feels most challenging for you to embody?"
+    ],
+    "badge": "🎭",
+    "badgeName": "Archetype Master",
+    "color": "teal"
+  },
+  {
+    "id": 3,
+    "title": "The Four Sacred Suits",
+    "subtitle": "The Minor Arcana",
+    "slug": "3-minor-arcana",
+    "description": "Dive into the 56 Minor Arcana cards across four elemental suits. Wands ignite your passion, Cups flow with emotion, Swords cut through illusion, and Pentacles ground you in earthly reality.",
+    "objectives": [
+      "Master all four suits and their elemental correspondences",
+      "Learn the numerological significance of each card number",
+      "Understand how suits relate to daily life situations",
+      "Read complete Minor Arcana spreads confidently"
+    ],
+    "worksheets": ["Elemental Self-Assessment", "Suit Balance Check-In"],
+    "activities": ["Four Suits Spread", "Elemental Journaling"],
+    "discussion": [
+      "Which suit feels most dominant in your life right now?",
+      "How do the four elements show up in your daily experiences?",
+      "Which suit do you find most challenging to interpret?"
+    ],
+    "badge": "🔥",
+    "badgeName": "Suit Scholar",
+    "color": "hotpink"
+  },
+  {
+    "id": 4,
+    "title": "The Royal Court",
+    "subtitle": "Court Cards Deep Dive",
+    "slug": "4-court-cards",
+    "description": "Meet the Pages, Knights, Queens, and Kings of the tarot court. Learn to identify these personality archetypes in yourself and others, and discover how they show up as people, energies, or aspects of yourself in readings.",
+    "objectives": [
+      "Distinguish between the four court card ranks",
+      "Identify court card personalities in real people",
+      "Recognize when court cards represent yourself vs. others",
+      "Use court cards for character and personality readings"
+    ],
+    "worksheets": ["My Court Card Profile", "People in My Life Spread"],
+    "activities": ["Court Card Personality Match", "Mirror Reflection Pull"],
+    "discussion": [
+      "Which court card most represents you right now? Why?",
+      "How do different court card energies show up in your relationships?",
+      "Which court card archetype do you aspire to embody?"
+    ],
+    "badge": "👑",
+    "badgeName": "Court Commander",
+    "color": "violet"
+  },
+  {
+    "id": 5,
+    "title": "Weaving the Web",
+    "subtitle": "Tarot Spreads & Layouts",
+    "slug": "5-spreads",
+    "description": "Learn to construct meaningful tarot spreads from simple three-card pulls to the classic Celtic Cross. Discover how spread design shapes the story the cards tell, and create your own personal spreads.",
+    "objectives": [
+      "Master classic tarot spreads including Celtic Cross",
+      "Understand positional meanings in spreads",
+      "Design your own custom tarot spreads",
+      "Synthesize multiple cards into cohesive readings"
+    ],
+    "worksheets": ["My Personal Spread Creation", "Reading Record Journal"],
+    "activities": ["Celtic Cross Reading", "Custom Spread Design Challenge"],
+    "discussion": [
+      "What spread format feels most natural to your reading style?",
+      "How does the context of positions change card meanings for you?",
+      "What kind of questions do you most want to ask the cards?"
+    ],
+    "badge": "🔮",
+    "badgeName": "Spread Weaver",
+    "color": "teal"
+  },
+  {
+    "id": 6,
+    "title": "The Fearless Reader",
+    "subtitle": "Intuitive Reading Mastery",
+    "slug": "6-fearless-reading",
+    "description": "Break free from memorization and step into fearless, intuitive reading. Learn to trust your inner knowing, synthesize card combinations, work with reversals, and develop your unique reading voice and style.",
+    "objectives": [
+      "Read cards intuitively without constant reference to books",
+      "Interpret card combinations and contextual meanings",
+      "Work confidently with reversed cards",
+      "Develop your unique reading voice and style"
+    ],
+    "worksheets": ["Intuition Trust Journal", "My Reading Style Declaration"],
+    "activities": ["Eyes-Closed Pull & Story", "Reversal Reframe Practice"],
+    "discussion": [
+      "When do you trust your intuition vs. defer to traditional meanings?",
+      "How do you handle reversals in your personal practice?",
+      "What makes a reading feel meaningful and authentic to you?"
+    ],
+    "badge": "⚡",
+    "badgeName": "Fearless Reader",
+    "color": "hotpink"
+  },
+  {
+    "id": 7,
+    "title": "Reading for Others",
+    "subtitle": "Ethics, Practice & Sharing Your Gift",
+    "slug": "7-read-for-others",
+    "description": "Step into your role as a reader for others. Learn the ethics of tarot reading, how to create sacred space, ask powerful questions, deliver messages with compassion, and handle challenging readings with grace and integrity.",
+    "objectives": [
+      "Understand the ethics and responsibilities of reading for others",
+      "Create a sacred, safe space for readings",
+      "Deliver difficult messages with compassion and care",
+      "Establish your reading practice and boundaries"
+    ],
+    "worksheets": ["My Ethical Reading Guidelines", "Reading for Others Reflection"],
+    "activities": ["Practice Reading Exchange", "Sacred Space Ritual Design"],
+    "discussion": [
+      "What ethical guidelines feel most important in your reading practice?",
+      "How do you handle it when someone gets a card they fear?",
+      "What boundaries do you need to set to read for others sustainably?"
+    ],
+    "badge": "💫",
+    "badgeName": "Tarot Guide",
+    "color": "violet"
+  }
+]

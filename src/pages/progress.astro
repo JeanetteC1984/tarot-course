@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProgressTracker from '../components/ProgressTracker.astro';
+import BadgeGrid from '../components/BadgeGrid.astro';
+---
+<BaseLayout title="My Progress — The Fearless Tarot" description="Track your tarot learning journey and collect badges as you complete each module.">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="text-center mb-12">
+      <p class="font-accent text-violet text-sm uppercase tracking-widest mb-3">✦ Your Journey ✦</p>
+      <h1 class="font-heading text-5xl sm:text-6xl text-moonlight mb-4"
+          style="text-shadow: 0 0 20px rgba(123,104,238,0.6);">
+        My Progress
+      </h1>
+      <p class="text-silver/70 font-accent text-sm max-w-lg mx-auto">
+        Track your path through The Fearless Tarot. Complete modules to unlock badges and earn your place among the Tarot Guides.
+      </p>
+    </div>
+
+    <!-- Progress Tracker -->
+    <section class="mb-12">
+      <h2 class="font-heading text-3xl text-moonlight mb-6">The Fool's Journey Progress</h2>
+      <ProgressTracker />
+    </section>
+
+    <!-- Divider -->
+    <div class="h-px bg-gradient-to-r from-transparent via-hotpink/40 to-transparent my-10"></div>
+
+    <!-- Badge Grid -->
+    <section>
+      <div class="text-center mb-8">
+        <h2 class="font-heading text-3xl text-moonlight mb-2">Achievement Badges</h2>
+        <p class="text-silver/60 font-accent text-sm">Complete each module to unlock your badge. Unlocked badges glow with hot pink magic!</p>
+      </div>
+      <BadgeGrid />
+    </section>
+
+    <!-- Reset Section -->
+    <div class="mt-12 p-6 rounded-2xl border border-charcoal/30 bg-charcoal/10 text-center">
+      <p class="font-accent text-silver/50 text-xs uppercase tracking-wider mb-2">Start Fresh?</p>
+      <p class="text-silver/40 text-sm mb-4">Your progress is saved locally in your browser. You can reset it at any time.</p>
+      <button
+        id="resetProgress"
+        class="font-accent text-xs text-silver/30 hover:text-hotpink border border-silver/20 hover:border-hotpink/40 px-4 py-2 rounded-full transition-all"
+      >
+        Reset All Progress
+      </button>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  document.getElementById('resetProgress')?.addEventListener('click', () => {
+    if (confirm('This will reset all your module completions and badges. Are you sure?')) {
+      for (let i = 1; i <= 7; i++) {
+        localStorage.removeItem(`module_complete_${i}`);
+      }
+      window.location.reload();
+    }
+  });
+</script>

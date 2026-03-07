@@ -1,0 +1,89 @@
+---
+interface Props {
+  moduleId: number;
+}
+const { moduleId } = Astro.props;
+---
+<div id={`module-complete-${moduleId}`} class="module-complete-wrapper mt-8">
+  <button
+    id={`btn-complete-${moduleId}`}
+    class="complete-btn font-accent px-8 py-4 rounded-full border-2 border-violet text-violet hover:bg-violet hover:text-midnight transition-all duration-300 text-sm uppercase tracking-wider"
+    data-module-id={moduleId}
+    aria-pressed="false"
+  >
+    ✦ Mark Module as Complete ✦
+  </button>
+  <div id={`complete-msg-${moduleId}`} class="hidden mt-4 text-center">
+    <span class="text-hotpink font-accent text-lg animate-pulse-glow">✨ Module Complete! ✨</span>
+    <p class="text-silver text-sm mt-1">Your progress has been saved.</p>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.complete-btn');
+
+    buttons.forEach((btn) => {
+      const moduleId = btn.dataset.moduleId;
+      if (!moduleId) return;
+
+      const key = `module_complete_${moduleId}`;
+      const msgEl = document.getElementById(`complete-msg-${moduleId}`);
+
+      // Restore state
+      if (localStorage.getItem(key) === 'true') {
+        setCompleted(btn, msgEl);
+      }
+
+      btn.addEventListener('click', () => {
+        const isCompleted = localStorage.getItem(key) === 'true';
+        if (isCompleted) {
+          localStorage.removeItem(key);
+          resetComplete(btn, msgEl);
+        } else {
+          localStorage.setItem(key, 'true');
+          setCompleted(btn, msgEl);
+          // Confetti burst
+          launchConfetti();
+        }
+      });
+    });
+
+    function setCompleted(btn: HTMLButtonElement, msgEl: HTMLElement | null) {
+      btn.textContent = '✓ Completed!';
+      btn.classList.remove('border-violet', 'text-violet', 'hover:bg-violet', 'hover:text-midnight');
+      btn.classList.add('border-teal', 'text-teal', 'bg-teal/10', 'glow-teal');
+      btn.setAttribute('aria-pressed', 'true');
+      msgEl?.classList.remove('hidden');
+    }
+
+    function resetComplete(btn: HTMLButtonElement, msgEl: HTMLElement | null) {
+      btn.textContent = '✦ Mark Module as Complete ✦';
+      btn.classList.add('border-violet', 'text-violet', 'hover:bg-violet', 'hover:text-midnight');
+      btn.classList.remove('border-teal', 'text-teal', 'bg-teal/10', 'glow-teal');
+      btn.setAttribute('aria-pressed', 'false');
+      msgEl?.classList.add('hidden');
+    }
+
+    function launchConfetti() {
+      const colors = ['#FF69B4', '#7B68EE', '#00CED1', '#F0F0F0', '#C8B96A'];
+      for (let i = 0; i < 40; i++) {
+        const piece = document.createElement('div');
+        piece.style.cssText = `
+          position: fixed;
+          top: -10px;
+          left: ${Math.random() * 100}vw;
+          width: ${Math.random() * 8 + 4}px;
+          height: ${Math.random() * 8 + 4}px;
+          background: ${colors[Math.floor(Math.random() * colors.length)]};
+          border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+          animation: confettiFall ${Math.random() * 2 + 1.5}s ease-in forwards;
+          z-index: 9999;
+          pointer-events: none;
+        `;
+        document.body.appendChild(piece);
+        setTimeout(() => piece.remove(), 3500);
+      }
+    }
+  });
+</script>

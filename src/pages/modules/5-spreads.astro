@@ -1,0 +1,209 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ModuleCompleteButton from '../../components/ModuleCompleteButton.astro';
+
+const spreads = [
+  {
+    name: "One Card Pull",
+    cards: 1,
+    purpose: "Daily guidance, yes/no questions, focus of the day",
+    positions: ["The Message — What do I need to know?"],
+    emoji: "🃏"
+  },
+  {
+    name: "Three Card Spread",
+    cards: 3,
+    purpose: "Situation overview, past/present/future, mind/body/spirit",
+    positions: ["Past / Situation", "Present / Action", "Future / Outcome"],
+    emoji: "🔮"
+  },
+  {
+    name: "Five Card Spread",
+    cards: 5,
+    purpose: "Decision-making, deeper situation analysis",
+    positions: ["Current situation", "What helps you", "What hinders you", "Advice", "Likely outcome"],
+    emoji: "⭐"
+  },
+  {
+    name: "Celtic Cross",
+    cards: 10,
+    purpose: "Deep comprehensive reading on any life situation",
+    positions: [
+      "The Present — The heart of the matter",
+      "The Challenge — What crosses or complicates you",
+      "The Past — Recent past influences",
+      "The Future — Near future",
+      "Above — Your conscious goal or ideal",
+      "Below — Unconscious influences or foundation",
+      "Advice — How to proceed",
+      "External Influences — Environment and others",
+      "Hopes & Fears — What you hope or fear",
+      "Outcome — The final result"
+    ],
+    emoji: "✚"
+  },
+  {
+    name: "Horseshoe Spread",
+    cards: 7,
+    purpose: "Balanced view of a question or situation",
+    positions: ["Past", "Present", "Hidden influences", "Obstacles", "Attitudes of others", "What to do", "Outcome"],
+    emoji: "🌙"
+  },
+  {
+    name: "Relationship Spread",
+    cards: 6,
+    purpose: "Understanding dynamics between two people",
+    positions: ["How you see yourself", "How you see the other", "How they see you", "How they see themselves", "The connection between you", "What the relationship needs"],
+    emoji: "💞"
+  },
+];
+---
+<BaseLayout title="Module 5: Spreads — The Fearless Tarot" description="Master tarot spreads from simple three-card pulls to the Celtic Cross. Design your own custom spreads.">
+  <article class="max-w-4xl mx-auto px-4 py-12">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <p class="font-accent text-teal text-sm uppercase tracking-widest mb-3">✦ Module 5 ✦</p>
+      <div class="text-6xl mb-4">🔮</div>
+      <h1 class="font-heading text-5xl sm:text-6xl text-moonlight mb-3"
+          style="text-shadow: 0 0 20px rgba(0,206,209,0.5);">
+        Weaving the Web
+      </h1>
+      <p class="font-accent text-teal text-lg">Tarot Spreads & Layouts</p>
+      <div class="mt-4 h-px bg-gradient-to-r from-transparent via-teal/40 to-transparent"></div>
+    </div>
+
+    <!-- Intro -->
+    <p class="text-silver text-lg leading-relaxed text-center max-w-2xl mx-auto mb-12">
+      A tarot spread is a <strong class="text-teal">structured conversation</strong> with the cards. Each position in a spread
+      creates a frame for interpretation — a lens through which you view the card's message. Learning spreads means
+      learning to ask better questions and hear richer answers.
+    </p>
+
+    <!-- Objectives -->
+    <section class="mb-10 p-6 rounded-2xl border border-teal/30 bg-teal/5">
+      <h2 class="font-heading text-2xl text-moonlight mb-4">✦ Learning Objectives</h2>
+      <ul class="space-y-2">
+        {[
+          "Master classic tarot spreads from one-card pulls to the Celtic Cross",
+          "Understand how positional meanings shape card interpretation",
+          "Design your own custom tarot spreads for specific questions",
+          "Synthesize multiple cards into a cohesive, flowing reading narrative"
+        ].map(obj => (
+          <li class="flex items-start gap-2 text-silver text-sm">
+            <span class="text-teal mt-0.5">✦</span>
+            {obj}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- How Spreads Work -->
+    <section class="mb-12">
+      <h2 class="font-heading text-3xl text-moonlight mb-4">How Spreads Work</h2>
+      <p class="text-silver/80 leading-relaxed mb-4">
+        When a card sits in a spread position, that position's meaning acts as a <strong class="text-teal">modifier</strong> for how you
+        read the card. The same card in the "past" position tells a very different story than in the "outcome" position.
+      </p>
+      <p class="text-silver/80 leading-relaxed mb-6">
+        Learning to read spreads means developing the skill of <strong class="text-violet">synthesis</strong> — weaving the individual
+        card meanings together into a coherent narrative that addresses the querent's question.
+      </p>
+
+      <div class="p-5 rounded-xl border border-violet/20 bg-violet/5">
+        <h3 class="font-heading text-xl text-moonlight mb-3">Tips for Reading Spreads</h3>
+        <div class="space-y-2">
+          {[
+            "First take in the spread as a whole — what's the overall feeling?",
+            "Note patterns: more than 3 cards of one suit? Many reversals? Court cards?",
+            "Read each card in its position, then tell the story of how they connect",
+            "Let the cards in tension with each other be your most interesting clues",
+            "End with a 'so what' — what is the overall message for the querent?"
+          ].map(tip => (
+            <div class="flex gap-2 text-sm">
+              <span class="text-violet">✦</span>
+              <p class="text-silver/80">{tip}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Spreads Reference -->
+    <section class="mb-12">
+      <h2 class="font-heading text-3xl text-moonlight mb-6">Spread Library</h2>
+      <div class="space-y-6">
+        {spreads.map(spread => (
+          <div class="p-6 rounded-2xl border border-charcoal/40 bg-charcoal/10 hover:border-teal/40 transition-all">
+            <div class="flex items-start justify-between mb-3">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-2xl">{spread.emoji}</span>
+                  <h3 class="font-heading text-xl text-moonlight">{spread.name}</h3>
+                  <span class="font-accent text-xs px-2 py-0.5 rounded-full border border-teal/40 text-teal">{spread.cards} {spread.cards === 1 ? 'card' : 'cards'}</span>
+                </div>
+                <p class="text-silver/60 text-sm mt-1 ml-8">{spread.purpose}</p>
+              </div>
+            </div>
+            <div class="ml-8">
+              <p class="font-accent text-violet text-xs uppercase tracking-wider mb-2">Card Positions:</p>
+              <ol class="space-y-1">
+                {spread.positions.map((pos, i) => (
+                  <li class="flex gap-2 text-sm text-silver/70">
+                    <span class="text-teal/60 font-accent text-xs w-4 shrink-0">{i+1}.</span>
+                    {pos}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Design Your Own -->
+    <section class="mb-10 p-6 rounded-2xl border border-hotpink/30 bg-hotpink/5">
+      <h2 class="font-heading text-2xl text-hotpink mb-3">🎯 Activity: Design Your Own Spread</h2>
+      <p class="text-silver/80 text-sm mb-3">
+        Think of a question or area of life you want the tarot to illuminate. Then design a spread specifically for it.
+      </p>
+      <p class="text-silver/70 text-sm mb-2">Your spread should include:</p>
+      <ol class="list-decimal list-inside space-y-1 text-silver/70 text-sm">
+        <li>A title and clear purpose for the spread</li>
+        <li>3-7 card positions with specific meanings</li>
+        <li>A layout (can be any shape — cross, circle, line, star)</li>
+        <li>At least one "hidden influences" or "what you don't know" position</li>
+      </ol>
+      <p class="text-silver/60 text-xs mt-3 italic">
+        Use the "My Personal Spread Creation" worksheet from the <a href="/worksheets" class="text-teal hover:underline">Worksheets page</a>.
+      </p>
+    </section>
+
+    <!-- Discussion -->
+    <section class="mb-10 p-6 rounded-2xl border border-teal/20 bg-teal/5">
+      <h2 class="font-heading text-2xl text-teal mb-4">💬 Discussion Prompts</h2>
+      <ul class="space-y-2 text-silver/80 text-sm">
+        {[
+          "What spread format feels most natural to your reading style?",
+          "How does the context of positions change card meanings for you?",
+          "What kind of questions do you most want to ask the cards?"
+        ].map(q => (
+          <li class="flex gap-2 italic"><span class="text-teal not-italic">Q:</span>{q}</li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Navigation -->
+    <div class="flex justify-between items-center mt-12 pt-6 border-t border-charcoal/30">
+      <a href="/modules/4-court-cards" class="font-accent text-violet hover:text-teal transition-colors text-sm">
+        ← Module 4: Court Cards
+      </a>
+      <a href="/modules/6-fearless-reading" class="font-accent text-violet hover:text-teal transition-colors text-sm">
+        Module 6: Fearless Reading →
+      </a>
+    </div>
+
+    <div class="text-center">
+      <ModuleCompleteButton moduleId={5} />
+    </div>
+  </article>
+</BaseLayout>

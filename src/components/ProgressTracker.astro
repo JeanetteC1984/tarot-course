@@ -1,0 +1,85 @@
+---
+import modulesData from '../data/modules.json';
+const modulesJson = JSON.stringify(modulesData);
+---
+<div class="progress-tracker" id="progressTracker">
+  <!-- Overall Progress -->
+  <div class="mb-8 p-6 rounded-2xl border border-violet/30 bg-charcoal/20">
+    <div class="flex items-center justify-between mb-3">
+      <h3 class="font-heading text-xl text-moonlight">The Fool's Journey</h3>
+      <span id="progressPercent" class="font-accent text-teal text-sm">0% Complete</span>
+    </div>
+    <div class="progress-track h-4">
+      <div class="progress-fill h-4" id="progressBar" style="width: 0%"></div>
+    </div>
+    <p class="text-silver/60 text-xs mt-2 font-accent" id="progressModuleCount">0 of 7 modules completed</p>
+  </div>
+
+  <!-- Module List -->
+  <div class="space-y-3" id="moduleList">
+    {modulesData.map((mod) => (
+      <div
+        class="module-progress-item flex items-center gap-4 p-4 rounded-xl border border-charcoal/60 bg-charcoal/10 hover:border-violet/40 transition-colors"
+        data-module-id={mod.id}
+      >
+        <div class="text-3xl">{mod.badge}</div>
+        <div class="flex-1">
+          <div class="flex items-center justify-between">
+            <h4 class="font-accent text-silver text-sm">{mod.title}</h4>
+            <span class="module-status-badge font-accent text-xs px-2 py-0.5 rounded-full border border-charcoal text-silver/40">
+              Not Started
+            </span>
+          </div>
+          <p class="text-silver/50 text-xs mt-0.5">{mod.subtitle}</p>
+        </div>
+        <a
+          href={`/modules/${mod.slug}`}
+          class="font-accent text-xs text-violet hover:text-teal transition-colors whitespace-nowrap"
+        >
+          {mod.id === 1 ? 'Start →' : 'Go →'}
+        </a>
+      </div>
+    ))}
+  </div>
+</div>
+
+<script define:vars={{ modulesJson }}>
+  const modules = JSON.parse(modulesJson);
+
+  function updateProgress() {
+    let completed = 0;
+
+    modules.forEach((mod) => {
+      const isComplete = localStorage.getItem(`module_complete_${mod.id}`) === 'true';
+      if (isComplete) completed++;
+
+      const item = document.querySelector(`[data-module-id="${mod.id}"]`);
+      if (!item) return;
+
+      const badge = item.querySelector('.module-status-badge');
+      if (isComplete) {
+        item.classList.add('border-teal/40', 'bg-teal/5');
+        item.classList.remove('border-charcoal/60');
+        if (badge) {
+          badge.textContent = '✓ Complete';
+          badge.classList.remove('border-charcoal', 'text-silver/40');
+          badge.classList.add('border-teal/60', 'text-teal', 'bg-teal/10');
+        }
+      }
+    });
+
+    const percent = Math.round((completed / modules.length) * 100);
+    const progressBar = document.getElementById('progressBar');
+    const progressPercent = document.getElementById('progressPercent');
+    const progressCount = document.getElementById('progressModuleCount');
+
+    if (progressBar) progressBar.style.width = percent + '%';
+    if (progressPercent) progressPercent.textContent = percent + '% Complete';
+    if (progressCount) progressCount.textContent = `${completed} of ${modules.length} modules completed`;
+  }
+
+  updateProgress();
+
+  // Listen for storage changes (if user completes modules on another page)
+  window.addEventListener('storage', updateProgress);
+</script>

@@ -1,0 +1,226 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ModuleCompleteButton from '../../components/ModuleCompleteButton.astro';
+---
+<BaseLayout title="Module 7: Reading for Others — The Fearless Tarot" description="Learn the ethics, art, and sacred responsibility of reading tarot for others with compassion, integrity, and grace.">
+  <article class="max-w-4xl mx-auto px-4 py-12">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <p class="font-accent text-violet text-sm uppercase tracking-widest mb-3">✦ Module 7 ✦</p>
+      <div class="text-6xl mb-4">💫</div>
+      <h1 class="font-heading text-5xl sm:text-6xl text-moonlight mb-3"
+          style="text-shadow: 0 0 20px rgba(123,104,238,0.5);">
+        Reading for Others
+      </h1>
+      <p class="font-accent text-violet text-lg">Ethics, Practice & Sharing Your Gift</p>
+      <div class="mt-4 h-px bg-gradient-to-r from-transparent via-violet/40 to-transparent"></div>
+    </div>
+
+    <!-- Intro -->
+    <p class="text-silver text-lg leading-relaxed text-center max-w-2xl mx-auto mb-12">
+      Reading for others is a <strong class="text-violet">sacred act of service</strong>. When someone sits across from you
+      with their hopes, fears, and questions, they are trusting you with something precious. This final module prepares
+      you to step into that role with integrity, compassion, skill, and fearless love.
+    </p>
+
+    <!-- Objectives -->
+    <section class="mb-10 p-6 rounded-2xl border border-violet/30 bg-violet/5">
+      <h2 class="font-heading text-2xl text-moonlight mb-4">✦ Learning Objectives</h2>
+      <ul class="space-y-2">
+        {[
+          "Understand the ethical responsibilities and boundaries of reading for others",
+          "Create a sacred, safe, and empowering space for readings",
+          "Deliver difficult messages with compassion, care, and appropriate framing",
+          "Establish your reading practice, rates, policies, and personal boundaries"
+        ].map(obj => (
+          <li class="flex items-start gap-2 text-silver text-sm">
+            <span class="text-violet mt-0.5">✦</span>
+            {obj}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Ethics Section -->
+    <section class="mb-12">
+      <h2 class="font-heading text-3xl text-moonlight mb-6">The Ethics of Tarot Reading</h2>
+
+      <div class="space-y-4">
+        <!-- Core Principles -->
+        <div class="p-5 rounded-xl border border-violet/20 bg-violet/5">
+          <h3 class="font-heading text-xl text-violet mb-3">Core Ethical Principles</h3>
+          <div class="space-y-3">
+            {[
+              { principle: "Do No Harm", desc: "Never make pronouncements about death, illness, or fixed negative outcomes. Tarot is a tool for empowerment, not fear." },
+              { principle: "Informed Consent", desc: "Always ensure your client understands what tarot is (and isn't) before beginning. It's not fortune-telling — it's reflection." },
+              { principle: "Confidentiality", desc: "What happens in a reading stays in the reading. Protect the privacy of everyone who receives a reading from you." },
+              { principle: "Boundaries on Third Parties", desc: "Be cautious about reading deeply into absent third parties. Focus on how the querent can respond, not on what others are doing or thinking." },
+              { principle: "Refer When Necessary", desc: "Tarot is not therapy. If someone is in crisis, experiencing mental health challenges, or needs professional support, say so gently and provide resources." },
+            ].map(item => (
+              <div class="flex gap-3">
+                <span class="text-violet text-sm mt-0.5">✦</span>
+                <div>
+                  <p class="font-accent text-silver text-sm">{item.principle}</p>
+                  <p class="text-silver/60 text-xs">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Questions to Avoid -->
+        <div class="p-5 rounded-xl border border-teal/20 bg-teal/5">
+          <h3 class="font-heading text-xl text-teal mb-3">Questions to Reframe</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <p class="font-accent text-silver/60 text-xs uppercase tracking-wider mb-2">Avoid</p>
+              <ul class="space-y-1 text-silver/60 text-xs">
+                <li>"Will I die soon?"</li>
+                <li>"Does [person] love me?"</li>
+                <li>"Will I get [specific job]?"</li>
+                <li>"Is my partner cheating?"</li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-accent text-teal text-xs uppercase tracking-wider mb-2">Reframe As</p>
+              <ul class="space-y-1 text-silver/80 text-xs">
+                <li>"How can I make the most of my health?"</li>
+                <li>"What do I need to cultivate in this relationship?"</li>
+                <li>"How can I position myself for career success?"</li>
+                <li>"What is the truth I need to see in my relationship?"</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Creating Sacred Space -->
+    <section class="mb-12">
+      <h2 class="font-heading text-3xl text-moonlight mb-6">Creating Sacred Space for Readings</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {[
+          { emoji: "🕯️", title: "Physical Space", desc: "Clean, uncluttered, softly lit. A cloth for your cards, meaningful objects, candles or incense if appropriate." },
+          { emoji: "🧘", title: "Opening Ritual", desc: "A brief centering practice — breathing, a moment of intention-setting, or a simple prayer to open the reading space." },
+          { emoji: "❓", title: "Question Setting", desc: "Help your client articulate a clear, open question. 'What do I need to know about...?' works beautifully." },
+          { emoji: "🌙", title: "Closing Ritual", desc: "Thank the cards, clear the space energetically, check in with your client. Endings matter as much as beginnings." },
+        ].map(item => (
+          <div class="flex gap-3 p-4 rounded-xl border border-charcoal/40 bg-charcoal/10">
+            <span class="text-3xl">{item.emoji}</span>
+            <div>
+              <p class="font-accent text-silver text-sm mb-1">{item.title}</p>
+              <p class="text-silver/60 text-xs">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Delivering Difficult Messages -->
+    <section class="mb-12">
+      <h2 class="font-heading text-3xl text-moonlight mb-4">Delivering Difficult Messages</h2>
+      <p class="text-silver/80 leading-relaxed mb-5">
+        When "challenging" cards appear — Death, The Tower, Ten of Swords — many readers panic. But these cards
+        carry <strong class="text-teal">profound gifts of truth</strong> that, delivered with skill, can be the most
+        transformative moments in a reading.
+      </p>
+
+      <div class="space-y-3">
+        {[
+          { title: "Lead with the Transformation", desc: "Death isn't the end — it's transformation. The Tower isn't destruction — it's liberation from what was false. Frame challenge cards through their gift." },
+          { title: "Stay in Your Lane", desc: "You are an interpreter of symbols, not a doctor, therapist, or prophet. Share what you see; always add 'as I interpret this card...'" },
+          { title: "Empower, Don't Predict", desc: "Instead of 'this will happen,' say 'this energy is present, and here's how you might work with it or navigate it.'" },
+          { title: "Ask Before You Tell", desc: "Before interpreting a difficult card, ask: 'This card is appearing in the context of [position]. How does [card name] land for you?'" },
+        ].map(tip => (
+          <div class="flex gap-3 p-3 rounded-xl border border-charcoal/40 bg-charcoal/10">
+            <span class="text-violet mt-0.5">✦</span>
+            <div>
+              <p class="font-accent text-silver text-sm">{tip.title}</p>
+              <p class="text-silver/60 text-xs">{tip.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Starting Your Practice -->
+    <section class="mb-12">
+      <h2 class="font-heading text-3xl text-moonlight mb-6">Establishing Your Practice</h2>
+      <div class="p-6 rounded-2xl border border-moonlight/20 bg-charcoal/10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {[
+            { title: "Reading Format", items: ["In-person or online?", "Length (30 min, 60 min, etc.)", "One question vs. open reading"] },
+            { title: "Pricing", items: ["Free readings for practice", "Exchange-based", "Paid professional readings"] },
+            { title: "Client Agreements", items: ["Pre-reading questionnaire", "Terms & ethics statement", "What tarot is and isn't"] },
+            { title: "Self-Care", items: ["Energetic cleansing after readings", "Limits on sessions per day/week", "Not reading when emotionally depleted"] },
+          ].map(item => (
+            <div>
+              <p class="font-accent text-teal text-xs uppercase tracking-wider mb-2">{item.title}</p>
+              <ul class="space-y-1">
+                {item.items.map(i => (
+                  <li class="flex gap-2 text-silver/70 text-xs">
+                    <span class="text-violet">·</span>
+                    {i}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Activity -->
+    <section class="mb-10 p-6 rounded-2xl border border-hotpink/30 bg-hotpink/5">
+      <h2 class="font-heading text-2xl text-hotpink mb-2">🎯 Activity: Practice Reading Exchange</h2>
+      <p class="text-silver/80 text-sm mb-3">
+        Find a reading partner (friend, classmate, or online) and exchange three-card readings. Practice:
+      </p>
+      <ol class="list-decimal list-inside space-y-1 text-silver/70 text-sm">
+        <li>Setting the space and intention together</li>
+        <li>Asking open, empowering questions</li>
+        <li>Delivering the reading with compassion and care</li>
+        <li>Closing the reading with a clear ending</li>
+        <li>Giving each other feedback on the experience</li>
+      </ol>
+    </section>
+
+    <!-- Discussion -->
+    <section class="mb-10 p-6 rounded-2xl border border-violet/20 bg-violet/5">
+      <h2 class="font-heading text-2xl text-violet mb-4">💬 Discussion Prompts</h2>
+      <ul class="space-y-2 text-silver/80 text-sm">
+        {[
+          "What ethical guidelines feel most important in your reading practice?",
+          "How do you handle it when someone gets a card they fear?",
+          "What boundaries do you need to set to read for others sustainably?"
+        ].map(q => (
+          <li class="flex gap-2 italic"><span class="text-violet not-italic">Q:</span>{q}</li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Completion Celebration -->
+    <section class="mb-10 p-8 rounded-2xl border border-hotpink/40 bg-gradient-to-br from-hotpink/10 to-violet/10 text-center glow-pink">
+      <div class="text-5xl mb-4">🌟✨💫</div>
+      <h2 class="font-heading text-3xl text-moonlight mb-3">You've Reached the World!</h2>
+      <p class="text-silver/80 text-sm max-w-md mx-auto">
+        Completing this module means you've walked the entire Fool's Journey — from innocent beginner to compassionate,
+        skilled reader. The World card honors your completion. Now go forth and read fearlessly.
+      </p>
+    </section>
+
+    <!-- Navigation -->
+    <div class="flex justify-between items-center mt-12 pt-6 border-t border-charcoal/30">
+      <a href="/modules/6-fearless-reading" class="font-accent text-violet hover:text-teal transition-colors text-sm">
+        ← Module 6: Fearless Reading
+      </a>
+      <a href="/progress" class="font-accent text-violet hover:text-teal transition-colors text-sm">
+        View My Progress →
+      </a>
+    </div>
+
+    <div class="text-center">
+      <ModuleCompleteButton moduleId={7} />
+    </div>
+  </article>
+</BaseLayout>

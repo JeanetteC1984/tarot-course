@@ -1,0 +1,143 @@
+---
+import tarotDeck from '../data/tarot-deck.json';
+const deckJson = JSON.stringify(tarotDeck);
+---
+<div class="card-of-day-widget max-w-md mx-auto" id="cardWidget">
+  <div class="card-container w-full" style="height: 420px;">
+    <div class="card-inner" id="cardInner">
+      <!-- Card Front (back of card) -->
+      <div class="card-front rounded-2xl overflow-hidden border-2 border-violet/50 glow-violet flex items-center justify-center cursor-pointer select-none"
+           id="cardFront"
+           role="button"
+           tabindex="0"
+           aria-label="Click to reveal your card"
+           style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
+        <div class="text-center p-6">
+          <div class="text-8xl mb-4" style="animation: float 4s ease-in-out infinite; display: inline-block;">🌙</div>
+          <p class="font-heading text-2xl text-moonlight mb-2">Your Daily Card</p>
+          <p class="font-accent text-silver text-sm">Click to reveal your message</p>
+          <div class="mt-4 flex justify-center gap-2">
+            <span class="text-2xl" style="animation: twinkle 2s ease-in-out infinite;">✦</span>
+            <span class="text-2xl" style="animation: twinkle 2.5s ease-in-out infinite 0.5s;">✧</span>
+            <span class="text-2xl" style="animation: twinkle 3s ease-in-out infinite 1s;">✦</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Back (revealed card) -->
+      <div class="card-back rounded-2xl overflow-hidden border-2 border-teal/50 glow-teal"
+           style="background: linear-gradient(135deg, #0D0D1A 0%, #1a0a2e 100%);">
+        <div class="p-6 h-full flex flex-col justify-between">
+          <div class="text-center">
+            <div class="text-5xl mb-2" id="cardEmoji">🔮</div>
+            <h2 class="font-heading text-3xl text-moonlight mb-1" id="cardName">The Fool</h2>
+            <p class="font-accent text-teal text-sm uppercase tracking-wider" id="cardSuit">Major Arcana</p>
+            <div class="my-3 h-px bg-gradient-to-r from-transparent via-violet/50 to-transparent"></div>
+          </div>
+
+          <div class="flex-1 overflow-y-auto space-y-3">
+            <div id="cardOrientation" class="text-center">
+              <span class="font-accent text-xs text-hotpink uppercase tracking-wider px-2 py-0.5 border border-hotpink/40 rounded-full"></span>
+            </div>
+            <div>
+              <p class="font-accent text-violet text-xs uppercase tracking-wider mb-1">Keywords</p>
+              <p class="text-silver text-sm" id="cardKeywords"></p>
+            </div>
+            <div>
+              <p class="font-accent text-violet text-xs uppercase tracking-wider mb-1">Message</p>
+              <p class="text-textlight text-sm leading-relaxed" id="cardMeaning"></p>
+            </div>
+            <div class="border-l-2 border-hotpink/50 pl-3">
+              <p class="font-accent text-hotpink text-xs uppercase tracking-wider mb-1">Reflection</p>
+              <p class="text-silver/80 text-sm italic" id="cardReflection"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 flex justify-center gap-4">
+    <button
+      id="pullCardBtn"
+      class="font-accent px-6 py-3 bg-gradient-to-r from-violet to-teal text-midnight rounded-full text-sm uppercase tracking-wider hover:opacity-90 transition-opacity glow-teal"
+    >
+      ✦ Pull Another Card ✦
+    </button>
+  </div>
+
+  <p class="text-center text-silver/50 text-xs mt-3 font-accent" id="cardDate"></p>
+</div>
+
+<script define:vars={{ deckJson }}>
+  const deck = JSON.parse(deckJson);
+  const cardInner = document.getElementById('cardInner');
+  const cardFront = document.getElementById('cardFront');
+  const pullBtn = document.getElementById('pullCardBtn');
+
+  const suitEmojis = {
+    'Major Arcana': '☽',
+    'Wands': '🔥',
+    'Cups': '💧',
+    'Swords': '⚔️',
+    'Pentacles': '🪙',
+  };
+
+  function pullCard() {
+    const card = deck[Math.floor(Math.random() * deck.length)];
+    const isReversed = Math.random() > 0.65;
+
+    document.getElementById('cardEmoji').textContent = suitEmojis[card.suit] || '🔮';
+    document.getElementById('cardName').textContent = card.name;
+    document.getElementById('cardSuit').textContent = `${card.suit} · ${isReversed ? 'Reversed' : 'Upright'}`;
+    document.getElementById('cardOrientation').querySelector('span').textContent = isReversed ? '↓ Reversed' : '↑ Upright';
+    document.getElementById('cardKeywords').textContent = card.keywords.join(' · ');
+    document.getElementById('cardMeaning').textContent = isReversed ? card.reversed : card.upright;
+    document.getElementById('cardReflection').textContent = card.reflection;
+
+    const dateEl = document.getElementById('cardDate');
+    if (dateEl) {
+      dateEl.textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    return card;
+  }
+
+  // Auto-pull on load if not already flipped
+  let currentCard = null;
+
+  function showCard() {
+    currentCard = pullCard();
+    if (cardInner && !cardInner.classList.contains('flipped')) {
+      cardInner.classList.add('flipped');
+    }
+  }
+
+  cardFront?.addEventListener('click', () => {
+    if (!cardInner?.classList.contains('flipped')) {
+      showCard();
+    }
+  });
+
+  cardFront?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      if (!cardInner?.classList.contains('flipped')) {
+        showCard();
+      }
+    }
+  });
+
+  pullBtn?.addEventListener('click', () => {
+    cardInner?.classList.remove('flipped');
+    setTimeout(() => {
+      showCard();
+    }, 400);
+  });
+
+  // Set date on load
+  const dateEl = document.getElementById('cardDate');
+  if (dateEl) {
+    dateEl.textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  }
+</script>

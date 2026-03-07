@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ModuleCompleteButton from '../../components/ModuleCompleteButton.astro';
+import tarotDeck from '../../data/tarot-deck.json';
+
+const majorArcana = tarotDeck.filter(c => c.arcana === 'major');
+---
+<BaseLayout title="Module 2: The Major Arcana — The Fearless Tarot" description="Journey through the 22 Major Arcana and discover the universal archetypes that mirror the stages of your soul's journey.">
+  <article class="max-w-4xl mx-auto px-4 py-12">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <p class="font-accent text-teal text-sm uppercase tracking-widest mb-3">✦ Module 2 ✦</p>
+      <div class="text-6xl mb-4">🎭</div>
+      <h1 class="font-heading text-5xl sm:text-6xl text-moonlight mb-3"
+          style="text-shadow: 0 0 20px rgba(0,206,209,0.5);">
+        Archetypes of the Soul
+      </h1>
+      <p class="font-accent text-teal text-lg">The Major Arcana</p>
+      <div class="mt-4 h-px bg-gradient-to-r from-transparent via-teal/40 to-transparent"></div>
+    </div>
+
+    <!-- Intro -->
+    <p class="text-silver text-lg leading-relaxed text-center max-w-2xl mx-auto mb-12">
+      The 22 Major Arcana cards are the <strong class="text-teal">soul cards</strong> of the tarot. They represent
+      the universal patterns, archetypal forces, and profound life themes that every human navigates on their
+      journey from ignorance to enlightenment — from The Fool to The World.
+    </p>
+
+    <!-- Objectives -->
+    <section class="mb-10 p-6 rounded-2xl border border-teal/30 bg-teal/5">
+      <h2 class="font-heading text-2xl text-moonlight mb-4">✦ Learning Objectives</h2>
+      <ul class="space-y-2">
+        {[
+          "Learn all 22 Major Arcana cards, their numbers, imagery, and core meanings",
+          "Understand the Fool's Journey as a metaphor for the human life cycle",
+          "Connect each archetype to real patterns and experiences in your own life",
+          "Practice reading Major Arcana cards intuitively and contextually"
+        ].map(obj => (
+          <li class="flex items-start gap-2 text-silver text-sm">
+            <span class="text-teal mt-0.5">✦</span>
+            {obj}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- The Fool's Journey -->
+    <section class="mb-12">
+      <h2 class="font-heading text-3xl text-moonlight mb-4">The Fool's Journey</h2>
+      <p class="text-silver/80 leading-relaxed mb-4">
+        The 22 Major Arcana tell the story of <strong class="text-violet">The Fool</strong> — numbered 0, representing
+        the soul entering this life experience. As The Fool journeys through the cards, they encounter every force,
+        wisdom, challenge, and transformation that a human life can offer.
+      </p>
+      <p class="text-silver/80 leading-relaxed">
+        This is not a linear journey — we cycle through these archetypes throughout our lives, visiting them again
+        and again at new levels of understanding. When a Major Arcana card appears in a reading, it signals that
+        <strong class="text-teal">a significant life lesson or archetypal energy</strong> is at work.
+      </p>
+    </section>
+
+    <!-- All 22 Major Arcana Cards -->
+    <section class="mb-12">
+      <h2 class="font-heading text-3xl text-moonlight mb-6">The 22 Major Arcana</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {majorArcana.map((card) => (
+          <div class="card-entry p-4 rounded-xl border border-charcoal/40 bg-charcoal/10 hover:border-violet/40 transition-all group">
+            <div class="flex items-start justify-between mb-2">
+              <div>
+                <span class="font-accent text-violet/60 text-xs">{card.number}</span>
+                <h3 class="font-heading text-xl text-moonlight group-hover:text-violet transition-colors">{card.name}</h3>
+              </div>
+            </div>
+            <p class="text-teal text-xs font-accent mb-2">{card.keywords.join(' · ')}</p>
+            <p class="text-silver/70 text-xs leading-relaxed mb-2">
+              <strong class="text-silver/90">Upright:</strong> {card.upright}
+            </p>
+            <p class="text-silver/70 text-xs leading-relaxed mb-2">
+              <strong class="text-silver/90">Reversed:</strong> {card.reversed}
+            </p>
+            <div class="border-l-2 border-hotpink/30 pl-2 mt-2">
+              <p class="text-silver/50 text-xs italic">{card.reflection}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Activity -->
+    <section class="mb-10 p-6 rounded-2xl border border-hotpink/30 bg-hotpink/5">
+      <h2 class="font-heading text-2xl text-hotpink mb-2">🎯 Activity: Personal Archetype Pull</h2>
+      <p class="text-silver/80 text-sm mb-3">
+        Remove only the 22 Major Arcana from your deck. Shuffle while asking: "Which archetype is most active in my life right now?"
+      </p>
+      <p class="text-silver/80 text-sm">
+        Pull one card and journal for 10 minutes about how this archetype's energy is manifesting in your current life chapter.
+        Where do you see it? What is it asking of you?
+      </p>
+    </section>
+
+    <!-- Worksheet -->
+    <section class="mb-10 p-6 rounded-2xl border border-charcoal/40 bg-charcoal/10">
+      <h2 class="font-heading text-2xl text-moonlight mb-3">📓 Worksheets</h2>
+      <p class="text-silver/70 text-sm">Visit the <a href="/worksheets" class="text-teal hover:underline">Worksheets page</a> for:</p>
+      <ul class="mt-2 space-y-1 text-silver/70 text-sm">
+        <li class="flex gap-2"><span class="text-teal">✦</span> My Fool's Journey Map — chart your personal life journey through 22 archetypes</li>
+        <li class="flex gap-2"><span class="text-teal">✦</span> Archetype Mirror — explore how each archetype shows up in your life and relationships</li>
+      </ul>
+    </section>
+
+    <!-- Discussion -->
+    <section class="mb-10 p-6 rounded-2xl border border-violet/20 bg-violet/5">
+      <h2 class="font-heading text-2xl text-violet mb-4">💬 Discussion Prompts</h2>
+      <ul class="space-y-3">
+        {[
+          "Which Major Arcana card resonates most with your current life chapter?",
+          "How do you see the Fool's Journey reflected in your own life?",
+          "Which archetype feels most challenging for you to embody?"
+        ].map(q => (
+          <li class="flex gap-2 text-silver/80 text-sm italic">
+            <span class="text-violet not-italic">Q:</span>
+            {q}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Navigation -->
+    <div class="flex justify-between items-center mt-12 pt-6 border-t border-charcoal/30">
+      <a href="/modules/1-fools-leap" class="font-accent text-violet hover:text-teal transition-colors text-sm">
+        ← Module 1: The Fool's Leap
+      </a>
+      <a href="/modules/3-minor-arcana" class="font-accent text-violet hover:text-teal transition-colors text-sm">
+        Module 3: Minor Arcana →
+      </a>
+    </div>
+
+    <div class="text-center">
+      <ModuleCompleteButton moduleId={2} />
+    </div>
+  </article>
+</BaseLayout>
