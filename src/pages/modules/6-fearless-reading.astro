@@ -1,0 +1,187 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ModuleCompleteButton from '../../components/ModuleCompleteButton.astro';
+import CardOfTheDay from '../../components/CardOfTheDay.astro';
+---
+<BaseLayout title="Module 6: Fearless Reading — The Fearless Tarot" description="Break free from memorization. Learn to read intuitively, work with reversals, and develop your unique reading voice.">
+  <article class="max-w-4xl mx-auto px-4 py-12">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <p class="font-accent text-hotpink text-sm uppercase tracking-widest mb-3">✦ Module 6 ✦</p>
+      <div class="text-6xl mb-4">⚡</div>
+      <h1 class="font-heading text-5xl sm:text-6xl text-moonlight mb-3"
+          style="text-shadow: 0 0 20px rgba(255,105,180,0.5);">
+        The Fearless Reader
+      </h1>
+      <p class="font-accent text-hotpink text-lg">Intuitive Reading Mastery</p>
+      <div class="mt-4 h-px bg-gradient-to-r from-transparent via-hotpink/40 to-transparent"></div>
+    </div>
+
+    <!-- Intro -->
+    <p class="text-silver text-lg leading-relaxed text-center max-w-2xl mx-auto mb-12">
+      The most powerful reading you'll ever give comes <strong class="text-hotpink">not from memory, but from presence</strong>.
+      This module is about releasing the training wheels — the guidebook, the memorized keywords, the fear of getting it "wrong" —
+      and stepping into the fearless, intuitive reader you were born to be.
+    </p>
+
+    <!-- Objectives -->
+    <section class="mb-10 p-6 rounded-2xl border border-hotpink/30 bg-hotpink/5">
+      <h2 class="font-heading text-2xl text-moonlight mb-4">✦ Learning Objectives</h2>
+      <ul class="space-y-2">
+        {[
+          "Read cards intuitively without constantly referencing books or keywords",
+          "Interpret card combinations and understand how cards modify each other",
+          "Work confidently with reversed cards using multiple approaches",
+          "Develop your unique reading voice, style, and philosophy"
+        ].map(obj => (
+          <li class="flex items-start gap-2 text-silver text-sm">
+            <span class="text-hotpink mt-0.5">✦</span>
+            {obj}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Intuitive Reading -->
+    <section class="space-y-8 mb-12">
+      <div>
+        <h2 class="font-heading text-3xl text-moonlight mb-4">Reading Intuitively</h2>
+        <p class="text-silver/80 leading-relaxed mb-4">
+          Intuitive reading means <strong class="text-teal">trusting your own responses</strong> to a card before reaching for
+          any external meaning. Your gut reaction — the feeling in your body, the word that surfaces, the memory that appears —
+          is always the first and most important layer of interpretation.
+        </p>
+
+        <div class="space-y-3">
+          {[
+            { step: "1", title: "Look Before You Think", desc: "Spend 30 seconds just looking at the card. What do you notice? What feeling arises? What single word comes to mind?" },
+            { step: "2", title: "Tell the Story", desc: "Without using the card's traditional name or meaning, tell the story of what you SEE happening in the image." },
+            { step: "3", title: "Make It Personal", desc: "Ask: 'How does this story relate to my question or situation?' The bridge between imagery and meaning is always personal." },
+            { step: "4", title: "Then Consult Tradition", desc: "After your intuitive read, look at traditional meanings. Notice what aligned. Be surprised by what didn't." },
+          ].map(item => (
+            <div class="flex gap-4 p-4 rounded-xl border border-charcoal/40 bg-charcoal/10">
+              <div class="w-8 h-8 rounded-full bg-hotpink/20 border border-hotpink/40 flex items-center justify-center shrink-0">
+                <span class="font-accent text-hotpink text-xs">{item.step}</span>
+              </div>
+              <div>
+                <p class="font-accent text-silver text-sm mb-1">{item.title}</p>
+                <p class="text-silver/60 text-xs">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Card Combinations -->
+      <div>
+        <h2 class="font-heading text-3xl text-moonlight mb-4">Reading Card Combinations</h2>
+        <p class="text-silver/80 leading-relaxed mb-4">
+          When two or more cards appear together, they create a <strong class="text-teal">conversation</strong>. They can support each other,
+          modify each other, or create tension that points to a nuanced truth.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          {[
+            { type: "Harmonious", desc: "Cards that share an element or theme amplify each other's message.", example: "Three of Cups + The Sun = Pure joy and celebration ahead" },
+            { type: "Modifying", desc: "One card changes how you interpret the other.", example: "The Tower + The Star = Disruption followed by hope and renewal" },
+            { type: "Tension", desc: "Opposing energies creating a nuanced message or choice point.", example: "The Hermit + Three of Wands = Alone but visionary — solitude serving expansion" },
+          ].map(combo => (
+            <div class="p-4 rounded-xl border border-teal/20 bg-teal/5">
+              <p class="font-accent text-teal text-xs uppercase tracking-wider mb-2">{combo.type}</p>
+              <p class="text-silver/70 text-xs mb-2">{combo.desc}</p>
+              <p class="text-silver/50 text-xs italic">{combo.example}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Reversals -->
+      <div>
+        <h2 class="font-heading text-3xl text-moonlight mb-4">Working with Reversals</h2>
+        <p class="text-silver/80 leading-relaxed mb-4">
+          Whether you work with reversals is entirely your choice. There is no "correct" approach. Here are the main approaches:
+        </p>
+        <div class="space-y-3">
+          {[
+            { title: "Blocked Energy", desc: "The card's energy is present but blocked, delayed, or not yet fully expressed." },
+            { title: "Internalized", desc: "The energy is turned inward — working on an inner level rather than externally manifesting." },
+            { title: "Shadow Aspect", desc: "The darker, more challenging expression of the card's archetype is at play." },
+            { title: "The Message is Extra Strong", desc: "Some readers treat reversals as intensified versions of the upright meaning." },
+            { title: "Ignore Reversals", desc: "Many excellent readers simply read all cards upright and focus on intuition and context." },
+          ].map(approach => (
+            <div class="flex gap-3 text-sm">
+              <span class="text-violet mt-0.5">✦</span>
+              <div>
+                <span class="font-accent text-silver">{approach.title}: </span>
+                <span class="text-silver/70">{approach.desc}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Practice with Card of the Day -->
+    <section class="mb-10 p-6 rounded-2xl border border-hotpink/30 bg-hotpink/5">
+      <h2 class="font-heading text-2xl text-hotpink mb-3">🎯 Activity: Eyes-Closed Pull & Story</h2>
+      <p class="text-silver/80 text-sm mb-4">
+        Use the card randomizer below. When your card appears, set a timer for 3 minutes and write
+        <em>without stopping</em> about what you see and feel — no keywords, no "meanings." Just your raw response.
+        Then pull another and do the same.
+      </p>
+      <CardOfTheDay />
+    </section>
+
+    <!-- Building Your Style -->
+    <section class="mb-10">
+      <h2 class="font-heading text-3xl text-moonlight mb-6">Building Your Reading Style</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {[
+          { q: "Do you use reversals?", options: ["Yes, always", "Sometimes", "Never"] },
+          { q: "What's your reading philosophy?", options: ["Predictive", "Empowerment", "Psychological", "Spiritual"] },
+          { q: "What's your reading environment?", options: ["Sacred ritual", "Casual & conversational", "Meditative", "Practical"] },
+          { q: "How do you begin a reading?", options: ["Set intention", "Shuffle & pray", "Ask a question", "Just dive in"] },
+        ].map(item => (
+          <div class="p-4 rounded-xl border border-charcoal/40 bg-charcoal/10">
+            <p class="font-accent text-violet text-xs uppercase tracking-wider mb-2">{item.q}</p>
+            <div class="flex flex-wrap gap-2">
+              {item.options.map(opt => (
+                <span class="font-accent text-xs px-2 py-1 rounded-full border border-charcoal/60 text-silver/60">{opt}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="text-silver/50 text-xs mt-4 text-center font-accent italic">
+        There are no right answers — only your answers. Your reading style is uniquely yours.
+      </p>
+    </section>
+
+    <!-- Discussion -->
+    <section class="mb-10 p-6 rounded-2xl border border-hotpink/20 bg-hotpink/5">
+      <h2 class="font-heading text-2xl text-hotpink mb-4">💬 Discussion Prompts</h2>
+      <ul class="space-y-2 text-silver/80 text-sm">
+        {[
+          "When do you trust your intuition vs. defer to traditional meanings?",
+          "How do you handle reversals in your personal practice?",
+          "What makes a reading feel meaningful and authentic to you?"
+        ].map(q => (
+          <li class="flex gap-2 italic"><span class="text-hotpink not-italic">Q:</span>{q}</li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Navigation -->
+    <div class="flex justify-between items-center mt-12 pt-6 border-t border-charcoal/30">
+      <a href="/modules/5-spreads" class="font-accent text-violet hover:text-teal transition-colors text-sm">
+        ← Module 5: Spreads
+      </a>
+      <a href="/modules/7-read-for-others" class="font-accent text-violet hover:text-teal transition-colors text-sm">
+        Module 7: Read for Others →
+      </a>
+    </div>
+
+    <div class="text-center">
+      <ModuleCompleteButton moduleId={6} />
+    </div>
+  </article>
+</BaseLayout>

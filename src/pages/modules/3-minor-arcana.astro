@@ -1,0 +1,183 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ModuleCompleteButton from '../../components/ModuleCompleteButton.astro';
+import tarotDeck from '../../data/tarot-deck.json';
+
+const suits = ['Wands', 'Cups', 'Swords', 'Pentacles'] as const;
+const suitInfo: Record<string, { element: string; theme: string; emoji: string; color: string; keywords: string[] }> = {
+  Wands:     { element: 'Fire',  theme: 'Passion, creativity, career, ambition', emoji: '🔥', color: 'border-orange-500/40 bg-orange-500/5', keywords: ['Inspiration','Drive','Action','Creativity','Ambition'] },
+  Cups:      { element: 'Water', theme: 'Emotions, relationships, dreams, intuition', emoji: '💧', color: 'border-blue-400/40 bg-blue-400/5',  keywords: ['Emotion','Love','Intuition','Dreams','Healing'] },
+  Swords:    { element: 'Air',   theme: 'Thoughts, communication, conflict, truth', emoji: '⚔️', color: 'border-sky-300/40 bg-sky-300/5',    keywords: ['Mind','Truth','Conflict','Communication','Clarity'] },
+  Pentacles: { element: 'Earth', theme: 'Material world, money, body, nature', emoji: '🪙', color: 'border-green-500/40 bg-green-500/5',   keywords: ['Money','Health','Work','Nature','Abundance'] },
+};
+
+const cardsBySuit = Object.fromEntries(
+  suits.map(suit => [suit, tarotDeck.filter(c => c.suit === suit)])
+);
+---
+<BaseLayout title="Module 3: The Minor Arcana — The Fearless Tarot" description="Dive into the 56 Minor Arcana cards across Wands, Cups, Swords, and Pentacles.">
+  <article class="max-w-5xl mx-auto px-4 py-12">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <p class="font-accent text-hotpink text-sm uppercase tracking-widest mb-3">✦ Module 3 ✦</p>
+      <div class="text-6xl mb-4">🔥</div>
+      <h1 class="font-heading text-5xl sm:text-6xl text-moonlight mb-3"
+          style="text-shadow: 0 0 20px rgba(255,105,180,0.5);">
+        The Four Sacred Suits
+      </h1>
+      <p class="font-accent text-hotpink text-lg">The Minor Arcana</p>
+      <div class="mt-4 h-px bg-gradient-to-r from-transparent via-hotpink/40 to-transparent"></div>
+    </div>
+
+    <!-- Intro -->
+    <p class="text-silver text-lg leading-relaxed text-center max-w-2xl mx-auto mb-12">
+      The 56 Minor Arcana cards map the <strong class="text-hotpink">everyday landscape of human experience</strong>
+      across four elemental suits. While the Major Arcana speaks to the grand themes of life, the Minor Arcana
+      addresses the situations, relationships, thoughts, and choices that fill our days.
+    </p>
+
+    <!-- Objectives -->
+    <section class="mb-10 p-6 rounded-2xl border border-hotpink/30 bg-hotpink/5">
+      <h2 class="font-heading text-2xl text-moonlight mb-4">✦ Learning Objectives</h2>
+      <ul class="space-y-2">
+        {[
+          "Master all four suits and their elemental correspondences (Fire, Water, Air, Earth)",
+          "Learn the numerological significance of each card number (Ace through 10)",
+          "Understand how each suit relates to specific life areas and situations",
+          "Read complete Minor Arcana spreads confidently"
+        ].map(obj => (
+          <li class="flex items-start gap-2 text-silver text-sm">
+            <span class="text-hotpink mt-0.5">✦</span>
+            {obj}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Suit Overview -->
+    <section class="mb-12">
+      <h2 class="font-heading text-3xl text-moonlight mb-6">The Four Elements</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+        {suits.map(suit => {
+          const info = suitInfo[suit];
+          return (
+            <div class={`p-4 rounded-xl border ${info.color}`}>
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-2xl">{info.emoji}</span>
+                <div>
+                  <h3 class="font-accent text-silver text-sm">{suit}</h3>
+                  <p class="text-silver/50 text-xs">{info.element} · {info.theme}</p>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-1">
+                {info.keywords.map(kw => (
+                  <span class="font-accent text-xs px-2 py-0.5 rounded-full border border-charcoal/40 text-silver/60">{kw}</span>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <!-- Numerology -->
+      <div class="p-5 rounded-xl border border-violet/20 bg-violet/5 mb-8">
+        <h3 class="font-heading text-xl text-moonlight mb-3">Numerology in the Minor Arcana</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 text-xs">
+          {[
+            ['Ace (1)', 'New beginnings, pure potential'],
+            ['2', 'Balance, choice, duality'],
+            ['3', 'Growth, collaboration, creativity'],
+            ['4', 'Stability, structure, foundation'],
+            ['5', 'Challenge, conflict, change'],
+            ['6', 'Harmony, healing, support'],
+            ['7', 'Reflection, assessment, faith'],
+            ['8', 'Mastery, movement, power'],
+            ['9', 'Near completion, integration'],
+            ['10', 'Completion, transition, legacy'],
+          ].map(([num, meaning]) => (
+            <div class="p-2 rounded border border-charcoal/30">
+              <p class="text-violet font-accent">{num}</p>
+              <p class="text-silver/60 text-xs leading-tight">{meaning}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Cards by Suit -->
+    {suits.map(suit => {
+      const info = suitInfo[suit];
+      const cards = cardsBySuit[suit];
+      return (
+        <section class="mb-12">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="text-4xl">{info.emoji}</span>
+            <div>
+              <h2 class="font-heading text-3xl text-moonlight">{suit}</h2>
+              <p class="font-accent text-silver/50 text-sm">{info.element} · {info.theme}</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {cards.map(card => (
+              <div class={`p-3 rounded-lg border ${info.color} hover:opacity-80 transition-opacity`}>
+                <h3 class="font-accent text-silver text-sm mb-1">{card.name}</h3>
+                <p class="text-teal text-xs mb-1">{card.keywords.slice(0,3).join(' · ')}</p>
+                <p class="text-silver/60 text-xs leading-tight">{card.upright.slice(0, 70)}{card.upright.length > 70 ? '...' : ''}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      );
+    })}
+
+    <!-- Activity -->
+    <section class="mb-10 p-6 rounded-2xl border border-hotpink/30 bg-hotpink/5">
+      <h2 class="font-heading text-2xl text-hotpink mb-2">🎯 Activity: Four Suits Spread</h2>
+      <p class="text-silver/80 text-sm mb-3">
+        Separate your deck into its four suits. Shuffle each pile separately while focusing on that element's energy.
+        Draw one card from each pile and lay them out together.
+      </p>
+      <p class="text-silver/80 text-sm">
+        Ask: "What is the current state of my Fire (Wands), Water (Cups), Air (Swords), and Earth (Pentacles) energy?"
+        Journal about each card and how it reflects your current elemental balance.
+      </p>
+    </section>
+
+    <!-- Worksheets -->
+    <section class="mb-10 p-6 rounded-2xl border border-charcoal/40 bg-charcoal/10">
+      <h2 class="font-heading text-2xl text-moonlight mb-3">📓 Worksheets</h2>
+      <ul class="space-y-1 text-silver/70 text-sm">
+        <li class="flex gap-2"><span class="text-teal">✦</span> Elemental Self-Assessment — rate your elemental balance 1-10</li>
+        <li class="flex gap-2"><span class="text-teal">✦</span> Suit Balance Check-In — a monthly spread to track your elemental energies</li>
+      </ul>
+    </section>
+
+    <!-- Discussion -->
+    <section class="mb-10 p-6 rounded-2xl border border-teal/20 bg-teal/5">
+      <h2 class="font-heading text-2xl text-teal mb-4">💬 Discussion Prompts</h2>
+      <ul class="space-y-2 text-silver/80 text-sm">
+        {[
+          "Which suit feels most dominant in your life right now?",
+          "How do the four elements show up in your daily experiences?",
+          "Which suit do you find most challenging to interpret?"
+        ].map(q => (
+          <li class="flex gap-2 italic"><span class="text-teal not-italic">Q:</span>{q}</li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Navigation -->
+    <div class="flex justify-between items-center mt-12 pt-6 border-t border-charcoal/30">
+      <a href="/modules/2-major-arcana" class="font-accent text-violet hover:text-teal transition-colors text-sm">
+        ← Module 2: Major Arcana
+      </a>
+      <a href="/modules/4-court-cards" class="font-accent text-violet hover:text-teal transition-colors text-sm">
+        Module 4: Court Cards →
+      </a>
+    </div>
+
+    <div class="text-center">
+      <ModuleCompleteButton moduleId={3} />
+    </div>
+  </article>
+</BaseLayout>

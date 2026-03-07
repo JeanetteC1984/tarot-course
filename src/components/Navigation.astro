@@ -1,0 +1,88 @@
+---
+import modulesData from '../data/modules.json';
+---
+<nav class="fixed top-0 left-0 right-0 z-50 bg-midnight/90 backdrop-blur-md border-b border-violet/30">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="/" class="font-heading text-2xl text-moonlight hover:text-violet transition-colors duration-300" style="text-shadow: 0 0 10px rgba(123,104,238,0.5);">
+        ✦ The Fearless Tarot ✦
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center gap-6">
+        <a href="/" class="nav-link text-silver hover:text-teal text-sm">Home</a>
+
+        <!-- Modules Dropdown -->
+        <div class="relative group">
+          <button class="nav-link text-silver hover:text-teal text-sm flex items-center gap-1">
+            Modules
+            <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="absolute top-full left-0 mt-1 w-64 bg-charcoal/95 backdrop-blur-md border border-violet/30 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            {modulesData.map((mod) => (
+              <a
+                href={`/modules/${mod.slug}`}
+                class="block px-4 py-2 text-sm text-silver hover:text-teal hover:bg-violet/10 transition-colors first:rounded-t-lg last:rounded-b-lg font-accent"
+              >
+                <span class="mr-2">{mod.badge}</span>
+                {mod.title}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <a href="/card-of-the-day" class="nav-link text-silver hover:text-teal text-sm">Card of the Day</a>
+        <a href="/worksheets" class="nav-link text-silver hover:text-teal text-sm">Worksheets</a>
+        <a href="/progress" class="nav-link text-silver hover:text-teal text-sm">Progress</a>
+        <a href="/bingo" class="nav-link text-silver hover:text-teal text-sm">Bingo</a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="mobileMenuBtn" class="md:hidden text-silver hover:text-teal p-2" aria-label="Toggle menu">
+        <svg class="w-6 h-6" id="hamburgerIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg class="w-6 h-6 hidden" id="closeIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="hidden md:hidden bg-midnight/95 border-t border-violet/20 px-4 pb-4">
+    <a href="/" class="block py-2 text-silver hover:text-teal nav-link text-sm">Home</a>
+    <div class="py-2">
+      <p class="text-violet text-xs font-accent uppercase tracking-wider mb-1">Modules</p>
+      {modulesData.map((mod) => (
+        <a
+          href={`/modules/${mod.slug}`}
+          class="block py-1 pl-3 text-silver hover:text-teal text-sm font-accent"
+        >
+          {mod.badge} {mod.title}
+        </a>
+      ))}
+    </div>
+    <a href="/card-of-the-day" class="block py-2 text-silver hover:text-teal nav-link text-sm">Card of the Day</a>
+    <a href="/worksheets" class="block py-2 text-silver hover:text-teal nav-link text-sm">Worksheets</a>
+    <a href="/progress" class="block py-2 text-silver hover:text-teal nav-link text-sm">Progress</a>
+    <a href="/bingo" class="block py-2 text-silver hover:text-teal nav-link text-sm">Bingo</a>
+  </div>
+</nav>
+
+<script>
+  const btn = document.getElementById('mobileMenuBtn');
+  const menu = document.getElementById('mobileMenu');
+  const hamburger = document.getElementById('hamburgerIcon');
+  const closeIcon = document.getElementById('closeIcon');
+
+  btn?.addEventListener('click', () => {
+    const isHidden = menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden', !isHidden);
+    hamburger?.classList.toggle('hidden', !isHidden);
+    closeIcon?.classList.toggle('hidden', isHidden);
+  });
+</script>

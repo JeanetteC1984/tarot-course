@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ModuleCompleteButton from '../../components/ModuleCompleteButton.astro';
+import tarotDeck from '../../data/tarot-deck.json';
+
+const courtCards = tarotDeck.filter(c => ['Page', 'Knight', 'Queen', 'King'].some(rank => c.name.startsWith(rank)));
+const ranks = ['Page', 'Knight', 'Queen', 'King'];
+const suits = ['Wands', 'Cups', 'Swords', 'Pentacles'];
+
+const rankInfo: Record<string, { element: string; stage: string; emoji: string }> = {
+  Page:   { element: 'Earth of element', stage: 'Student, messenger, beginner energy', emoji: '📜' },
+  Knight: { element: 'Air of element',   stage: 'Action-taker, seeker, intense focus', emoji: '⚔️' },
+  Queen:  { element: 'Water of element', stage: 'Inward mastery, nurturing, emotional intelligence', emoji: '👸' },
+  King:   { element: 'Fire of element',  stage: 'Outward mastery, leadership, authority', emoji: '👑' },
+};
+---
+<BaseLayout title="Module 4: Court Cards — The Fearless Tarot" description="Master the 16 court cards — Pages, Knights, Queens, and Kings — and learn to see them as people, energies, or aspects of yourself.">
+  <article class="max-w-4xl mx-auto px-4 py-12">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <p class="font-accent text-violet text-sm uppercase tracking-widest mb-3">✦ Module 4 ✦</p>
+      <div class="text-6xl mb-4">👑</div>
+      <h1 class="font-heading text-5xl sm:text-6xl text-moonlight mb-3"
+          style="text-shadow: 0 0 20px rgba(123,104,238,0.5);">
+        The Royal Court
+      </h1>
+      <p class="font-accent text-violet text-lg">Court Cards Deep Dive</p>
+      <div class="mt-4 h-px bg-gradient-to-r from-transparent via-violet/40 to-transparent"></div>
+    </div>
+
+    <!-- Intro -->
+    <p class="text-silver text-lg leading-relaxed text-center max-w-2xl mx-auto mb-12">
+      Court cards are the <strong class="text-violet">people cards</strong> of the tarot. They can represent actual people in your life,
+      energies you are embodying, aspects of your own personality, or situations asking you to take on a particular approach.
+      Learning to read court cards is one of the most transformative tarot skills you can develop.
+    </p>
+
+    <!-- Objectives -->
+    <section class="mb-10 p-6 rounded-2xl border border-violet/30 bg-violet/5">
+      <h2 class="font-heading text-2xl text-moonlight mb-4">✦ Learning Objectives</h2>
+      <ul class="space-y-2">
+        {[
+          "Understand the four court card ranks (Page, Knight, Queen, King) and what each represents",
+          "Identify court card personalities in real people and in yourself",
+          "Recognize when court cards represent the querent vs. another person",
+          "Use court cards confidently in character and personality readings"
+        ].map(obj => (
+          <li class="flex items-start gap-2 text-silver text-sm">
+            <span class="text-violet mt-0.5">✦</span>
+            {obj}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Rank Overview -->
+    <section class="mb-12">
+      <h2 class="font-heading text-3xl text-moonlight mb-6">Understanding the Ranks</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+        {ranks.map(rank => {
+          const info = rankInfo[rank];
+          return (
+            <div class="p-4 rounded-xl border border-violet/20 bg-violet/5">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-2xl">{info.emoji}</span>
+                <h3 class="font-heading text-xl text-moonlight">{rank}</h3>
+              </div>
+              <p class="text-violet text-xs font-accent mb-1">{info.element}</p>
+              <p class="text-silver/70 text-sm">{info.stage}</p>
+            </div>
+          );
+        })}
+      </div>
+
+      <div class="p-5 rounded-xl border border-teal/20 bg-teal/5">
+        <h3 class="font-heading text-xl text-moonlight mb-3">Three Ways to Read Court Cards</h3>
+        <div class="space-y-3">
+          {[
+            { title: 'As a Person', desc: 'The card represents an actual person in your life who embodies this archetype\'s energy and characteristics.' },
+            { title: 'As Yourself', desc: 'The card reflects an aspect of your own personality, an energy you\'re embodying, or a quality you need to call forward.' },
+            { title: 'As a Situation', desc: 'The card describes the approach or energy needed in a situation — act with Queen of Swords clarity, or Page of Cups openness.' },
+          ].map(item => (
+            <div class="flex gap-3">
+              <span class="text-teal text-sm mt-0.5">✦</span>
+              <div>
+                <p class="font-accent text-silver text-sm">{item.title}</p>
+                <p class="text-silver/60 text-xs">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- All 16 Court Cards -->
+    <section class="mb-12">
+      <h2 class="font-heading text-3xl text-moonlight mb-6">The 16 Court Cards</h2>
+      {ranks.map(rank => (
+        <div class="mb-8">
+          <h3 class="font-heading text-2xl text-violet mb-4">{rankInfo[rank].emoji} The {rank}s</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {courtCards.filter(c => c.name.startsWith(rank)).map(card => (
+              <div class="p-4 rounded-xl border border-charcoal/40 bg-charcoal/10 hover:border-violet/40 transition-all">
+                <h4 class="font-accent text-silver mb-1">{card.name}</h4>
+                <p class="text-teal text-xs font-accent mb-2">{card.keywords.join(' · ')}</p>
+                <p class="text-silver/70 text-xs mb-1"><strong class="text-silver/90">Upright:</strong> {card.upright}</p>
+                <p class="text-silver/50 text-xs italic mt-2">{card.reflection}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <!-- Activity -->
+    <section class="mb-10 p-6 rounded-2xl border border-hotpink/30 bg-hotpink/5">
+      <h2 class="font-heading text-2xl text-hotpink mb-2">🎯 Activity: Court Card Mirror</h2>
+      <p class="text-silver/80 text-sm mb-3">
+        Separate all 16 court cards from your deck. Spread them face up and answer these questions:
+      </p>
+      <ol class="list-decimal list-inside space-y-1 text-silver/70 text-sm">
+        <li>Which court card most represents YOU right now?</li>
+        <li>Which court card represents someone important in your life?</li>
+        <li>Which court card energy do you most need to call in?</li>
+        <li>Which court card do you resist or find most challenging?</li>
+      </ol>
+    </section>
+
+    <!-- Discussion -->
+    <section class="mb-10 p-6 rounded-2xl border border-violet/20 bg-violet/5">
+      <h2 class="font-heading text-2xl text-violet mb-4">💬 Discussion Prompts</h2>
+      <ul class="space-y-2 text-silver/80 text-sm">
+        {[
+          "Which court card most represents you right now? Why?",
+          "How do different court card energies show up in your relationships?",
+          "Which court card archetype do you aspire to embody?"
+        ].map(q => (
+          <li class="flex gap-2 italic"><span class="text-violet not-italic">Q:</span>{q}</li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Navigation -->
+    <div class="flex justify-between items-center mt-12 pt-6 border-t border-charcoal/30">
+      <a href="/modules/3-minor-arcana" class="font-accent text-violet hover:text-teal transition-colors text-sm">
+        ← Module 3: Minor Arcana
+      </a>
+      <a href="/modules/5-spreads" class="font-accent text-violet hover:text-teal transition-colors text-sm">
+        Module 5: Spreads →
+      </a>
+    </div>
+
+    <div class="text-center">
+      <ModuleCompleteButton moduleId={4} />
+    </div>
+  </article>
+</BaseLayout>

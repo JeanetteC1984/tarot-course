@@ -1,0 +1,42 @@
+---
+import StarField from '../components/StarField.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'The Fearless Tarot',
+  description = 'A complete tarot learning course. Journey through the 78 cards with an open heart and fearless intuition.',
+} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Dancing+Script:wght@400;600;700&family=MedievalSharp&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+  </head>
+  <body class="bg-midnight text-textlight min-h-screen">
+    <StarField />
+    <Navigation />
+
+    <main class="relative z-10 pt-16 min-h-screen">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

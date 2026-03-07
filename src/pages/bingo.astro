@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BingoCard from '../components/BingoCard.astro';
+---
+<BaseLayout title="Tarot Bingo — The Fearless Tarot" description="Play Tarot Bingo! Complete tarot practice challenges and mark your squares to win.">
+  <div class="max-w-3xl mx-auto px-4 py-12">
+    <div class="text-center mb-12">
+      <p class="font-accent text-violet text-sm uppercase tracking-widest mb-3">✦ Challenge Yourself ✦</p>
+      <h1 class="font-heading text-5xl sm:text-6xl text-moonlight mb-4"
+          style="text-shadow: 0 0 20px rgba(255,105,180,0.6);">
+        Tarot Bingo
+      </h1>
+      <p class="text-silver/70 font-accent text-sm max-w-lg mx-auto">
+        Complete tarot practice challenges to mark your squares. Get five in a row — horizontally, vertically, or diagonally — and shout BINGO!
+      </p>
+    </div>
+
+    <BingoCard />
+
+    <!-- How to Play -->
+    <div class="mt-12 p-6 rounded-2xl border border-violet/20 bg-violet/5">
+      <h2 class="font-heading text-2xl text-moonlight mb-4">How to Play</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="flex gap-3">
+          <span class="text-2xl">1️⃣</span>
+          <p class="text-silver/80 text-sm">Complete a tarot challenge listed on the card in your daily practice.</p>
+        </div>
+        <div class="flex gap-3">
+          <span class="text-2xl">2️⃣</span>
+          <p class="text-silver/80 text-sm">Click the square on the card to mark it as complete.</p>
+        </div>
+        <div class="flex gap-3">
+          <span class="text-2xl">3️⃣</span>
+          <p class="text-silver/80 text-sm">Get 5 in a row — horizontal, vertical, or diagonal — to win!</p>
+        </div>
+        <div class="flex gap-3">
+          <span class="text-2xl">4️⃣</span>
+          <p class="text-silver/80 text-sm">The FREE SPACE in the center is always marked. Your progress saves automatically.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

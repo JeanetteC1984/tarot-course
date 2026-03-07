@@ -1,0 +1,102 @@
+---
+---
+<div class="moon-container flex flex-col items-center gap-2">
+  <div class="moon" id="moonPhase" aria-label="Moon phase display">
+    <div class="moon-glow"></div>
+    <div class="moon-shadow" id="moonShadow"></div>
+  </div>
+  <p class="moon-label font-accent text-silver text-sm" id="moonLabel">Loading moon phase...</p>
+</div>
+
+<style>
+  .moon-container {
+    user-select: none;
+  }
+
+  .moon {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #F5F5DC, #C8B96A, #8B7D3A);
+    box-shadow: 0 0 20px rgba(200, 185, 106, 0.6), 0 0 40px rgba(200, 185, 106, 0.3);
+    overflow: hidden;
+    animation: moonFloat 6s ease-in-out infinite;
+  }
+
+  .moon-glow {
+    position: absolute;
+    inset: -10px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,185,106,0.2) 0%, transparent 70%);
+    animation: glowPulse 3s ease-in-out infinite alternate;
+  }
+
+  .moon-shadow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100%;
+    border-radius: 0 50% 50% 0;
+    background: rgba(13, 13, 26, 0.85);
+    transform-origin: left center;
+    transition: transform 0.5s ease;
+  }
+
+  @keyframes moonFloat {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-12px) rotate(3deg); }
+  }
+
+  @keyframes glowPulse {
+    from { opacity: 0.6; }
+    to { opacity: 1; }
+  }
+</style>
+
+<script>
+  function getMoonPhase() {
+    const now = new Date();
+    const knownNewMoon = new Date('2024-01-11');
+    const lunarCycle = 29.53058867;
+    const daysSince = (now.getTime() - knownNewMoon.getTime()) / (1000 * 60 * 60 * 24);
+    const phase = ((daysSince % lunarCycle) + lunarCycle) % lunarCycle;
+    return phase;
+  }
+
+  function getPhaseName(phase) {
+    if (phase < 1.85) return { name: '🌑 New Moon', shadow: 100 };
+    if (phase < 7.38) return { name: '🌒 Waxing Crescent', shadow: 65 };
+    if (phase < 9.22) return { name: '🌓 First Quarter', shadow: 50 };
+    if (phase < 14.77) return { name: '🌔 Waxing Gibbous', shadow: 25 };
+    if (phase < 16.61) return { name: '🌕 Full Moon', shadow: 0 };
+    if (phase < 22.15) return { name: '🌖 Waning Gibbous', shadow: 25 };
+    if (phase < 23.99) return { name: '🌗 Last Quarter', shadow: 50 };
+    if (phase < 29.53) return { name: '🌘 Waning Crescent', shadow: 75 };
+    return { name: '🌑 New Moon', shadow: 100 };
+  }
+
+  const phase = getMoonPhase();
+  const { name, shadow } = getPhaseName(phase);
+
+  const moonShadow = document.getElementById('moonShadow');
+  const moonLabel = document.getElementById('moonLabel');
+
+  if (moonShadow) {
+    if (shadow === 0) {
+      moonShadow.style.display = 'none';
+    } else if (shadow === 100) {
+      moonShadow.style.width = '100%';
+      moonShadow.style.left = '0';
+      moonShadow.style.right = 'auto';
+      moonShadow.style.borderRadius = '50%';
+    } else {
+      moonShadow.style.width = shadow + '%';
+    }
+  }
+
+  if (moonLabel) {
+    moonLabel.textContent = name;
+  }
+</script>

@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MoonPhase from '../components/MoonPhase.astro';
+import CardOfTheDay from '../components/CardOfTheDay.astro';
+import ProgressTracker from '../components/ProgressTracker.astro';
+import modulesData from '../data/modules.json';
+
+const colorMap: Record<string, string> = {
+  violet: 'border-violet/40 hover:border-violet',
+  teal: 'border-teal/40 hover:border-teal',
+  hotpink: 'border-hotpink/40 hover:border-hotpink',
+};
+---
+<BaseLayout title="The Fearless Tarot — Complete Tarot Learning Course">
+  <!-- Hero -->
+  <section class="relative px-4 py-20 text-center overflow-hidden">
+    <div class="max-w-4xl mx-auto">
+      <!-- Moon -->
+      <div class="flex justify-center mb-8">
+        <MoonPhase />
+      </div>
+
+      <!-- Title -->
+      <h1 class="font-heading text-6xl sm:text-7xl md:text-8xl text-moonlight mb-4 leading-none"
+          style="text-shadow: 0 0 30px rgba(123,104,238,0.7), 0 0 60px rgba(123,104,238,0.4);">
+        The Fearless Tarot
+      </h1>
+      <p class="font-accent text-teal text-lg sm:text-xl mb-6 tracking-widest uppercase">
+        ✦ A Complete Tarot Learning Journey ✦
+      </p>
+      <p class="text-silver text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
+        Embark on a mystical journey through the 78 cards of wisdom. Learn to read the tarot
+        with confidence, intuition, and fearless authenticity.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/modules/1-fools-leap"
+          class="font-accent px-8 py-4 bg-gradient-to-r from-violet to-teal text-midnight rounded-full text-sm uppercase tracking-wider hover:opacity-90 transition-all glow-teal"
+        >
+          Begin Your Journey →
+        </a>
+        <a
+          href="/card-of-the-day"
+          class="font-accent px-8 py-4 border border-violet/60 text-violet rounded-full text-sm uppercase tracking-wider hover:bg-violet/10 transition-all"
+        >
+          Pull Today's Card
+        </a>
+      </div>
+    </div>
+
+    <!-- Floating symbols -->
+    <div class="absolute top-20 left-10 text-4xl text-violet/20 animate-float" style="animation-delay: 0s;">✦</div>
+    <div class="absolute top-40 right-16 text-3xl text-teal/20 animate-float" style="animation-delay: 1s;">☽</div>
+    <div class="absolute bottom-20 left-20 text-5xl text-hotpink/15 animate-float" style="animation-delay: 2s;">★</div>
+    <div class="absolute bottom-10 right-10 text-3xl text-violet/20 animate-float" style="animation-delay: 0.5s;">✧</div>
+  </section>
+
+  <!-- Divider -->
+  <div class="h-px bg-gradient-to-r from-transparent via-violet/40 to-transparent mx-8"></div>
+
+  <!-- Card of the Day Preview -->
+  <section class="py-16 px-4">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="font-heading text-4xl text-moonlight mb-2">Card of the Day</h2>
+      <p class="text-silver/70 text-sm font-accent mb-10">Draw a card and receive today's mystical message</p>
+      <CardOfTheDay />
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="h-px bg-gradient-to-r from-transparent via-teal/40 to-transparent mx-8"></div>
+
+  <!-- Modules Grid -->
+  <section class="py-16 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="font-heading text-5xl text-moonlight mb-3">Your Learning Path</h2>
+        <p class="text-silver/70 font-accent text-sm">Seven modules to guide your tarot mastery</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {modulesData.map((mod) => (
+          <a
+            href={`/modules/${mod.slug}`}
+            class={`group block p-6 rounded-2xl border bg-charcoal/10 hover:bg-charcoal/20 transition-all duration-300 ${colorMap[mod.color] || 'border-violet/40 hover:border-violet'}`}
+          >
+            <div class="text-4xl mb-3">{mod.badge}</div>
+            <p class="font-accent text-teal text-xs uppercase tracking-wider mb-1">Module {mod.id}</p>
+            <h3 class="font-heading text-xl text-moonlight mb-2 group-hover:text-violet transition-colors">{mod.title}</h3>
+            <p class="text-silver/60 text-xs leading-relaxed mb-3">{mod.description.slice(0, 80)}...</p>
+            <span class="font-accent text-xs text-violet group-hover:text-teal transition-colors">
+              Begin → 
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="h-px bg-gradient-to-r from-transparent via-hotpink/40 to-transparent mx-8"></div>
+
+  <!-- Progress Section -->
+  <section class="py-16 px-4">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="font-heading text-4xl text-moonlight mb-2">Your Progress</h2>
+        <p class="text-silver/70 font-accent text-sm">Track your journey through the tarot</p>
+      </div>
+      <ProgressTracker />
+      <div class="text-center mt-6">
+        <a href="/progress" class="font-accent text-violet hover:text-teal text-sm transition-colors">
+          View Full Progress & Badges →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-16 px-4 text-center">
+    <div class="max-w-2xl mx-auto">
+      <div class="p-8 rounded-3xl border border-violet/30 bg-gradient-to-br from-charcoal/20 to-midnight glow-violet">
+        <p class="text-4xl mb-4">🔮</p>
+        <h2 class="font-heading text-3xl text-moonlight mb-3">Ready to Play Tarot Bingo?</h2>
+        <p class="text-silver/70 text-sm font-accent mb-6">Complete tarot challenges and win cosmic prizes!</p>
+        <a
+          href="/bingo"
+          class="font-accent px-8 py-3 bg-gradient-to-r from-hotpink to-violet text-midnight rounded-full text-sm uppercase tracking-wider hover:opacity-90 transition-all glow-pink inline-block"
+        >
+          Play Bingo →
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

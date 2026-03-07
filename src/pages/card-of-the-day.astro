@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CardOfTheDay from '../components/CardOfTheDay.astro';
+---
+<BaseLayout title="Card of the Day — The Fearless Tarot" description="Pull your daily tarot card and receive a mystical message to guide your day.">
+  <div class="max-w-2xl mx-auto px-4 py-12">
+    <div class="text-center mb-12">
+      <p class="font-accent text-violet text-sm uppercase tracking-widest mb-3">✦ Daily Wisdom ✦</p>
+      <h1 class="font-heading text-5xl sm:text-6xl text-moonlight mb-4"
+          style="text-shadow: 0 0 20px rgba(123,104,238,0.6);">
+        Card of the Day
+      </h1>
+      <p class="text-silver/70 font-accent text-sm max-w-md mx-auto">
+        Each day the cards offer a new mirror for your soul. Click the card to reveal today's message and let your intuition guide your reflection.
+      </p>
+    </div>
+
+    <CardOfTheDay />
+
+    <div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+      <div class="p-4 rounded-xl border border-charcoal/40 bg-charcoal/10">
+        <p class="text-2xl mb-2">☽</p>
+        <p class="font-accent text-teal text-xs uppercase tracking-wider mb-1">Reflect</p>
+        <p class="text-silver/60 text-xs">Sit with the card's imagery. What feelings does it stir?</p>
+      </div>
+      <div class="p-4 rounded-xl border border-charcoal/40 bg-charcoal/10">
+        <p class="text-2xl mb-2">📓</p>
+        <p class="font-accent text-teal text-xs uppercase tracking-wider mb-1">Journal</p>
+        <p class="text-silver/60 text-xs">Write about the reflection prompt and your honest response.</p>
+      </div>
+      <div class="p-4 rounded-xl border border-charcoal/40 bg-charcoal/10">
+        <p class="text-2xl mb-2">✨</p>
+        <p class="font-accent text-teal text-xs uppercase tracking-wider mb-1">Apply</p>
+        <p class="text-silver/60 text-xs">Look for the card's energy in your day. Notice synchronicities.</p>
+      </div>
+    </div>
+
+    <div class="mt-10 p-6 rounded-2xl border border-violet/20 bg-violet/5 text-center">
+      <p class="font-accent text-violet text-xs uppercase tracking-wider mb-2">Tip from the Fearless Tarot</p>
+      <p class="text-silver/80 text-sm italic">
+        "Trust your first impression of the card. Before looking up meanings, ask yourself: what does this image make me feel? That feeling is where the real reading lives."
+      </p>
+    </div>
+  </div>
+</BaseLayout>
